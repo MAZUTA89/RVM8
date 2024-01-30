@@ -24,7 +24,8 @@ public class Movement : MonoBehaviour
     float _gravity = -9.8f;
 
     public bool _groundedPlayer;
-   
+
+    bool _isActive;
 
     Vector3 _movement;
 
@@ -35,6 +36,14 @@ public class Movement : MonoBehaviour
         _speed = playerSO.Speed;
         _gravity = playerSO.Gravity;
     }
+    private void OnEnable()
+    {
+        IntroEvents.OnEndIntroEvent += OnEndIntro;
+    }
+    private void OnDisable()
+    {
+        IntroEvents.OnEndIntroEvent -= OnEndIntro;
+    }
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -44,10 +53,13 @@ public class Movement : MonoBehaviour
 
         _blendCode = Animator.StringToHash("Blend");
         _moveCode = Animator.StringToHash("Move");
+        _isActive = false;
     }
 
     void Update()
     {
+        if (!_isActive)
+            return;
         if (_characterController.isGrounded && _velocity.y < 0f)
         {
             _velocity.y = 0f;
@@ -86,6 +98,9 @@ public class Movement : MonoBehaviour
     {
         _animator.SetFloat(_blendCode, input.y);
     }
-   
-   
+
+    public void OnEndIntro()
+    {
+        _isActive = true;
+    }
 }

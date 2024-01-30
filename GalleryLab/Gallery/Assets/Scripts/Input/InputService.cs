@@ -29,6 +29,14 @@ public class InputService : IDisposable
     {
         return _inputaActions.ActionsMap.Interact.WasPerformedThisFrame();
     }
+    public bool IsSkip()
+    {
+        return _inputaActions.ActionsMap.IsSkip.WasPerformedThisFrame();
+    }
+    public bool IsEscape()
+    {
+        return _inputaActions.ActionsMap.Escape.WasPerformedThisFrame();
+    }
 
     public void Lock()
     {
@@ -37,6 +45,14 @@ public class InputService : IDisposable
     public void Unlock()
     {
         _inputaActions.Enable();
+    }
+    public void LockMovement()
+    {
+        _inputaActions.ActionsMap.Movement.Disable();
+    }
+    public void UnlockMovement()
+    {
+        _inputaActions.ActionsMap.Movement.Enable();
     }
 
 }

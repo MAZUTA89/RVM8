@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class RayInteraction : MonoBehaviour
 {
-    const float c_maxDistance = 100;
+    const float c_maxDistance = 2;
     public string ObjectName;
 
     public float Radius { get; protected set; } = 0.2f;

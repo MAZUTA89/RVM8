@@ -53,6 +53,24 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""c640624e-8abc-448b-a2fb-f2abd38471a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IsSkip"",
+                    ""type"": ""Button"",
+                    ""id"": ""465df8c7-e883-4d53-b615-87fef9877cd6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -143,6 +161,28 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""MouseDelta"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c1f5cb4-f924-440f-87dc-e0e31e8eeffc"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0ee8b31-fed3-4bca-a9a8-e94508324905"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IsSkip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -160,6 +200,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         m_ActionsMap_Movement = m_ActionsMap.FindAction("Movement", throwIfNotFound: true);
         m_ActionsMap_Interact = m_ActionsMap.FindAction("Interact", throwIfNotFound: true);
         m_ActionsMap_MouseDelta = m_ActionsMap.FindAction("MouseDelta", throwIfNotFound: true);
+        m_ActionsMap_Escape = m_ActionsMap.FindAction("Escape", throwIfNotFound: true);
+        m_ActionsMap_IsSkip = m_ActionsMap.FindAction("IsSkip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,6 +266,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_ActionsMap_Movement;
     private readonly InputAction m_ActionsMap_Interact;
     private readonly InputAction m_ActionsMap_MouseDelta;
+    private readonly InputAction m_ActionsMap_Escape;
+    private readonly InputAction m_ActionsMap_IsSkip;
     public struct ActionsMapActions
     {
         private @InputMap m_Wrapper;
@@ -231,6 +275,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_ActionsMap_Movement;
         public InputAction @Interact => m_Wrapper.m_ActionsMap_Interact;
         public InputAction @MouseDelta => m_Wrapper.m_ActionsMap_MouseDelta;
+        public InputAction @Escape => m_Wrapper.m_ActionsMap_Escape;
+        public InputAction @IsSkip => m_Wrapper.m_ActionsMap_IsSkip;
         public InputActionMap Get() { return m_Wrapper.m_ActionsMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -249,6 +295,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @MouseDelta.started += instance.OnMouseDelta;
             @MouseDelta.performed += instance.OnMouseDelta;
             @MouseDelta.canceled += instance.OnMouseDelta;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
+            @IsSkip.started += instance.OnIsSkip;
+            @IsSkip.performed += instance.OnIsSkip;
+            @IsSkip.canceled += instance.OnIsSkip;
         }
 
         private void UnregisterCallbacks(IActionsMapActions instance)
@@ -262,6 +314,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @MouseDelta.started -= instance.OnMouseDelta;
             @MouseDelta.performed -= instance.OnMouseDelta;
             @MouseDelta.canceled -= instance.OnMouseDelta;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
+            @IsSkip.started -= instance.OnIsSkip;
+            @IsSkip.performed -= instance.OnIsSkip;
+            @IsSkip.canceled -= instance.OnIsSkip;
         }
 
         public void RemoveCallbacks(IActionsMapActions instance)
@@ -293,5 +351,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMouseDelta(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
+        void OnIsSkip(InputAction.CallbackContext context);
     }
 }
