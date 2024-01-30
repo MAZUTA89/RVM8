@@ -16,12 +16,16 @@ public class InputLocker : MonoBehaviour
         IntroEvents.OnEndIntroEvent += OnEndIntro;
         ArtItem.OnInteractWithAudioDescriptionEvent += OnStartListenAudio;
         ArtItem.OnSkipAudioDescriptionEvent += OnSkipListenAdudio;
+        GameMenu.OnContinueEvent += Continue;
+        GameMenu.OnPauseEvent += Pause;
     }
     private void OnDisable()
     {
         IntroEvents.OnEndIntroEvent -= OnEndIntro;
         ArtItem.OnInteractWithAudioDescriptionEvent -= OnStartListenAudio;
         ArtItem.OnSkipAudioDescriptionEvent -= OnSkipListenAdudio;
+        GameMenu.OnContinueEvent -= Continue;
+        GameMenu.OnPauseEvent -= Pause;
     }
     // Start is called before the first frame update
     void Start()
@@ -40,5 +44,13 @@ public class InputLocker : MonoBehaviour
     public void OnSkipListenAdudio()
     {
         _inputService.UnlockMovement();
+    }
+    public void Pause()
+    {
+        _inputService.Lock();
+    }
+    public void Continue()
+    {
+        _inputService.Unlock();
     }
 }
