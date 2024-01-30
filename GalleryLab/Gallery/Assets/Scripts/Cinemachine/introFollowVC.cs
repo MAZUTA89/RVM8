@@ -20,6 +20,7 @@ public class introFollowVC : MonoBehaviour
     {
         vc = GetComponent<CinemachineVirtualCamera>();
         CameraSwitcher.Regiser(vc);
+        CameraSwitcher.Activate(vc);
     }
 
     // Update is called once per frame
