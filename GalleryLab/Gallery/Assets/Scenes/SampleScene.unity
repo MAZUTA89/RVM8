@@ -2148,6 +2148,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ArtItem
       objectReference: {fileID: 0}
+    - target: {fileID: 2994029677319476920, guid: 04b2537fdc86c1d46b31e75d8927851e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5329928
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994029677319476920, guid: 04b2537fdc86c1d46b31e75d8927851e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.46467042
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994029677319476920, guid: 04b2537fdc86c1d46b31e75d8927851e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.46467048
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994029677319476920, guid: 04b2537fdc86c1d46b31e75d8927851e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.53299296
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994029677319476920, guid: 04b2537fdc86c1d46b31e75d8927851e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 82.165
+      objectReference: {fileID: 0}
     - target: {fileID: 3162999410749441076, guid: 04b2537fdc86c1d46b31e75d8927851e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.02
